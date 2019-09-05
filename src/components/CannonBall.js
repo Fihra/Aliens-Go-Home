@@ -9,7 +9,7 @@ const CannonBall = (props) => {
     };
 
     return (
-        <ellispe
+        <ellipse
             style={ballStyle}
             cx={props.position.x}
             cy={props.position.y}
