@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Sky from './Sky';
 import Ground from './Ground';
 import CannonBase from './CannonBase';
@@ -47,9 +48,28 @@ const Canvas = (props) => {
                 </g>
             }
 
+            { props.gameState.flyingObjects.map(flyingObject => (
+                <FlyingObject
+                    key={flyingObject.id}
+                    position={flyingObject.position}
+                />
+            ))}
+
             <Heart position={{x: -300, y: 35}} />
         </svg>
     );
+};
+
+Canvas.propTypes = {
+    gameState: PropTypes.shape({
+        flyingObjects: PropTypes.arrayOf(PropTypes.shape({
+            position: PropTypes.shape({
+                x: PropTypes.number.isRequired,
+                y: PropTypes.number.isRequired
+            }).isRequired,
+            id: PropTypes.number.isRequired,
+        })).isRequired,
+    }).isRequired,
 };
 
 export default Canvas;
